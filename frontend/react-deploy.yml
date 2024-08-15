@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    role: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: frontend
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: jsachdev07/myreact:v1
+        env:
+         - name: REACT_APP_BACKEND_URL
+           value: "http://34.120.125.80/api/tasks" 
+        ports:
+        - containerPort: 3000
+         
